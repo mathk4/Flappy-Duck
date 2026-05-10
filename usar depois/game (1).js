@@ -99,13 +99,13 @@ class MotorDoJogo {
     constructor() {
         // Inicializa as imagens primeiro
         this.fundo = new Image();
-        this.fundo.src = 'images/fundo.jpeg';
+        this.fundo.src = 'fundo.png';
         
         this.imagemCano = new Image();
-        this.imagemCano.src = 'images/cano.jpeg';
+        this.imagemCano.src = 'cano.png';
 
         this.imagemPato = new Image();
-        this.imagemPato.src = 'images/sprites.jpeg';
+        this.imagemPato.src = 'sprites.png';
 
         // Variáveis de controle de carregamento
         this.carregandoImagens = true;
