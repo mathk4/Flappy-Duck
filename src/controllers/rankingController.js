@@ -1,1 +1,2 @@
-// logica de pegar os 10 melhores jogadores e exibir na tela de ranking (usar api do backend)
+// consumir a api de ranking para mostrar os 10 melhores jogadores e suas pontuações, e mostrar na view de ranking
+// verificar se o usuario ta na lista dos 10 melhores jogadores, se estiver não faz nada, se não estiver, colocar o usuario na 11 linha, mostrando seu nome e pontuação

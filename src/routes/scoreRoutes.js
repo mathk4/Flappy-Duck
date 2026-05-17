@@ -1,1 +1,0 @@
-// rota de enviar pontuações apos terminar o jogo(usar api do backend)

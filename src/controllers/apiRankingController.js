@@ -1,0 +1,1 @@
+// logica da api de pegar os 10 melhores jogadores do ranking

@@ -1,1 +1,0 @@
-// logica de pegar e enviar pontuações apos terminar o jogo(usar api do backend)

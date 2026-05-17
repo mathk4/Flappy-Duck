@@ -1,0 +1,1 @@
+// rota  da api de atualizar a pontuação do usuario
