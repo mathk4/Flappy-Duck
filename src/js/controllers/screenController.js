@@ -1,11 +1,12 @@
-import { telaMenu } from './view/menu.js';
-import { telaRanking } from './view/ranking.js';
-import { telaJogar } from './view/jogar.js';
-import { telaConta } from './view/conta.js';
+import { telaMenu } from '../view/menu.js';
+import { telaRanking } from '../view/ranking.js';
+import { telaJogar } from '../view/jogar.js';
+import { telaConta } from '../view/conta.js';
+import { telaLogin } from '../view/login.js';
 
 
 function navegarPara(tela) {
-    const app = document.getElementById('app');
+    //const app = document.getElementById('app');
 
 
     if (tela === 'menu') {

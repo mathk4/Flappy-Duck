@@ -1,0 +1,1 @@
+// logica de pegar os 10 melhores jogadores e exibir na tela de ranking (usar api do backend)

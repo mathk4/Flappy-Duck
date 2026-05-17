@@ -1,6 +1,6 @@
-export function telaConta(navegarPara) {
+export function telaLogin(navegarPara) {
     document.getElementById('app').innerHTML = `
-        <h1>Esse ver dados daconta</h1>
+        <h1>Esse pra conectar ou criar a conta</h1>
         <button id="btn-voltar">Voltar</button>
     `;
     const btnVoltar = document.getElementById('btn-voltar');

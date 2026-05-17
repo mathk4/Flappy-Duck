@@ -65,7 +65,7 @@ src/
 
 | Entrega | Descrição | Data | Status |
 |---------|-----------|------|--------|
-| E1 | Definição do projeto | — | ⏳ |
+| E1 | Definição do projeto | — | 🔄 |
 | E2 | Modelagem | — | ⏳ |
 | E3 | Backend + BD | — | ⏳ |
 | E4 | Interface integrada | — | ⏳ |

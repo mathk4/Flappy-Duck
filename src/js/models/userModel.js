@@ -1,0 +1,1 @@
+// logica de puxar as infromações do banco de dados do usuario

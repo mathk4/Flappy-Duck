@@ -1,0 +1,1 @@
+// rota de pegar ranking (usar api do backend)

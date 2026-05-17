@@ -1,0 +1,13 @@
+-- TABELA DE USUÁRIOS
+CREATE TABLE users(
+	id_user INT GENERATED ALWAYS AS IDENTITY,
+	username VARCHAR(20) NOT NULL,
+	email VARCHAR(100) NOT NULL UNIQUE,
+	password VARCHAR(255) NOT NULL,
+	maximum_score INT DEFAULT 0,
+	PRIMARY KEY (id_user)
+);
+
+-- ÍNDICE PARA BUSCAS POR PONTUAÇÃO
+CREATE INDEX idx_score
+ON users(maximum_score DESC);
