@@ -1,1 +1,1 @@
-// rota de pegar ranking da api
+// rota de api pegar ranking

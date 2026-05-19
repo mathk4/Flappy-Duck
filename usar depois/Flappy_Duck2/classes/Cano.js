@@ -28,13 +28,13 @@ class Cano {
             ) + 60;
     }
 
-    atualizarPosicao(velocidade) {
+    atualizarCano(velocidade) {
 
         this.x -= velocidade;
     }
 
     atualizar(velocidade) {
-        this.atualizarPosicao(velocidade);
+        this.atualizarCano(velocidade);
     }
 
     desenhar(ctx) {

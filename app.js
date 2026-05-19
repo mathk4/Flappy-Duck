@@ -18,6 +18,6 @@ app.use(express.static(path.join(__dirname, "src")));
 app.use("/", indexRoutes);
 app.use("/auth", authRoutes);
 app.use("/ranking", rankingRoutes);
-app.use("/score", scoreRoutes);
+app.use("/save", scoreRoutes);
 
 module.exports = app;
