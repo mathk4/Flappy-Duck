@@ -1,12 +1,13 @@
-// rota  da api de atualizar a pontuação do usuario
+// rota da API de atualizar a pontuação do usuário
 
-const express = require("express");
-const router = express.Router();
+import express from "express";
 
-const { 
+import {
     save
-    } = require("../controllers/apiScoreController");
+} from "../controllers/apiScoreController.js";
+
+const router = express.Router();
 
 router.post("/save", save);
 
-module.exports = router;
+export default router;

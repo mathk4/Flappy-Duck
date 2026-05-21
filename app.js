@@ -1,14 +1,19 @@
-const express = require("express");
-const path = require("path");
+import express from "express";
+import path from "path";
+import { fileURLToPath } from "url";
 
-const indexRoutes = require("./src/routes/indexRoutes");
-const authRoutes = require("./src/routes/apiAuthRoutes");
-const rankingRoutes = require("./src/routes/apiRankingRoutes");
-const scoreRoutes = require("./src/routes/apiScoreRoutes");
+import indexRoutes from "./src/routes/indexRoutes.js";
+import authRoutes from "./src/routes/apiAuthRoutes.js";
+//import rankingRoutes from "./src/routes/apiRankingRoutes.js";
+import scoreRoutes from "./src/routes/apiScoreRoutes.js";
 
 const app = express();
 
-app.use(express.json())
+// recriando __dirname no ES Modules
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+
+app.use(express.json());
 
 // arquivos estáticos
 app.use(express.static(path.join(__dirname, "public")));
@@ -17,7 +22,7 @@ app.use(express.static(path.join(__dirname, "src")));
 // rotas
 app.use("/", indexRoutes);
 app.use("/auth", authRoutes);
-app.use("/ranking", rankingRoutes);
+//app.use("/ranking", rankingRoutes);
 app.use("/save", scoreRoutes);
 
-module.exports = app;
+export default app;

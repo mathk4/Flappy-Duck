@@ -14,12 +14,13 @@
   "keywords": [],
   "author": "",
   "license": "ISC",
-  "type": "commonjs",
+  "type": "module",
   "bugs": {
     "url": "https://github.com/mathk4/Flappy-Duck/issues"
   },
   "homepage": "https://github.com/mathk4/Flappy-Duck#readme",
   "dependencies": {
+    "dotenv": "^17.4.2",
     "express": "^5.2.1",
     "pg": "^8.21.0"
   },

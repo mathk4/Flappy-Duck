@@ -1,6 +1,6 @@
 // logica da api para salvar score do usuario
 
-const { saveScore } = require("../models/userModel");
+import { saveScore } from "../models/userModel.js";
 
 export async function save(req, res) {
 

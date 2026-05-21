@@ -1,9 +1,9 @@
 // logica da api de login e registro de usuarios
 
-const { 
+import { 
     findUserByEmail,
     createUser
-    } = require("../models/userModel");
+    } from "../models/userModel.js";
 
 export async function register(req, res) {
 
