@@ -8,6 +8,6 @@ import {
 
 const router = express.Router();
 
-router.post("/save", save);
+router.patch("/save", save);
 
 export default router;
