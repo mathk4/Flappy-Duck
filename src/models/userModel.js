@@ -5,14 +5,9 @@ export async function findUserByEmail(email) {
     // pegar os dados do usuario do banco de dados usando o email
 }
 
-export async function getUserById(id) {
-
-    // pegar os dados do usuario do banco de dados usando o id
-}
-
 export async function createUser(username, email, password) {
 
-    // criar um novo usuario no banco de dados
+    // criar um novo usuario no banco de dados e retornar o usuario criado
 }
 
 export async function getTopPlayers() {
