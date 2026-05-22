@@ -1,1 +1,5 @@
 // chamar a view de jogo, e quando o jogo acabar navegar para a view de gameover
+
+export function jogarController(navegarPara) {
+    
+}

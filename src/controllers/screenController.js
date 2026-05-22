@@ -1,9 +1,9 @@
-import { telaMenu } from '../view/menu.js';
-import { telaRanking } from '../view/ranking.js';
-import { telaJogar } from '../view/jogar.js';
-import { telaConta } from '../view/conta.js';
-import { telaLogin } from '../view/login.js';
-import { telaGameover } from '../view/gameover.js';
+import { menuController } from '../controllers/menuController.js';
+import { rankingController } from '../controllers/apiRankingController.js';
+import { jogarController } from '../controllers/JogarController.js';
+import { contaController } from '../controllers/contaController.js';
+import { loginController } from '../controllers/loginController.js';
+import { gameoverController } from '../controllers/gameoverController.js';
 
 
 function navegarPara(tela) {
@@ -11,22 +11,22 @@ function navegarPara(tela) {
 
 
     if (tela === 'menu') {
-        telaMenu(navegarPara);
+        menuController(navegarPara);
     } else if (tela === 'ranking') {
-        telaRanking(navegarPara);
+        rankingController(navegarPara);
     }
     else if (tela === 'jogar') {
-        telaJogar(navegarPara);
+        jogarController(navegarPara);
     }
     else if (tela === 'conta') {
-        telaConta(navegarPara);
+        contaController(navegarPara);
     }
     else if (tela === 'login') {
-        telaLogin(navegarPara);
+        loginController(navegarPara);
     }
     else if (tela === 'gameover') {
-        telaGameover(navegarPara);
+        gameoverController(navegarPara);
     }
 }
 // Inicia o app chamando a primeira tela
-navegarPara('menu');
+navegarPara('login');
