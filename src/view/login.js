@@ -38,10 +38,4 @@ export function telaLogin() {
         </div>
     </div>
     `;
-
-    //const btnVoltar = document.getElementById('btn-voltar');
-    
-    //btnVoltar.addEventListener('click', () => {
-    //    navegarPara('menu');
-    //});
 }
