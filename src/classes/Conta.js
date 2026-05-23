@@ -1,4 +1,4 @@
-class Conta {
+export class Conta {
 
     constructor(id, nome, pontuacao = 0){
 

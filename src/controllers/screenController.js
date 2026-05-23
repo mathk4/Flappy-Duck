@@ -1,5 +1,5 @@
 import { menuController } from '../controllers/menuController.js';
-import { rankingController } from '../controllers/apiRankingController.js';
+import { rankingController } from '../controllers/rankingController.js';
 import { jogarController } from '../controllers/JogarController.js';
 import { contaController } from '../controllers/contaController.js';
 import { loginController } from '../controllers/loginController.js';

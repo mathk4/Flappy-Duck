@@ -1,34 +1,41 @@
 // logica de puxar as infromações do banco de dados do usuario
 import pool from '../db/connection.js';
 
+function normalizeEmail(email) {
+    return email.trim().toLowerCase();
+}
+
 export async function findUserByEmail(email) {
+    const normalizedEmail = normalizeEmail(email);
 
     const query = `
         SELECT 
             id_user,
             username,
+            password,
             maximum_score
         FROM users
-        WHERE email = $1
+        WHERE LOWER(TRIM(email)) = LOWER(TRIM($1))
     `;
-    const values = [email];
+    const values = [normalizedEmail];
 
     const result = await pool.query(query, values);
-    
+
     return result.rows[0];
 }
 
 export async function createUser(username, email, password) {
+    const normalizedEmail = normalizeEmail(email);
 
     const query = `
         INSERT INTO users (username, email, password)
         VALUES ($1, $2, $3)
         RETURNING id_user, username, maximum_score
     `;
-    const values = [username, email, password];
+    const values = [username.trim(), normalizedEmail, password];
 
     const result = await pool.query(query, values);
-    
+
     return result.rows[0];
 }
 

@@ -2,7 +2,7 @@
 
 // alem disso tem que carregar os dados da api consumida para a classe Conta(salvar no state) e ir para a view de menu(por meio do metodo de navegarpara)
 
-import { Conta } from "./classes/Conta.js";
+import { Conta } from "../classes/Conta.js";
 import { setConta} from "../state/session.js";
 import { telaLogin } from "../view/login.js";
 
@@ -13,25 +13,25 @@ export function loginController(navegarPara) {
     const formRegister = document.getElementById( "registerForm" );
 
     formRegister.addEventListener("submit", (event) => {
-        register(navegarPara);
+        register(event, navegarPara);
     });
 
     const formLogin = document.getElementById( "loginForm" );
 
     formLogin.addEventListener("submit", (event) => {
-        login(navegarPara);
+        login(event, navegarPara);
     });
 }
 
-function register(navegarPara){
+async function register(event, navegarPara){
     event.preventDefault();
     
     const nome = document.querySelector("#registerName").value;
-    const email = document.querySelector("#registerEmail").value;
+    const email = document.querySelector("#registerEmail").value.trim().toLowerCase();
     const senha = document.querySelector("#registerPassword").value;
     
     try {
-        const response = await fetch("/register", {
+        const response = await fetch("/auth/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -51,10 +51,10 @@ function register(navegarPara){
         } else {
             alert(data.message);
     
-            conta = new Conta(
-                data.usuario.id,
+            const conta = new Conta(
+                data.usuario.id_user,
                 data.usuario.username,
-                data.usuario.pontuacao
+                data.usuario.maximum_score
             );
     
             setConta(conta);
@@ -67,15 +67,15 @@ function register(navegarPara){
     }
 }
 
-function login(navegarPara){
+async function login(event, navegarPara){
 
     event.preventDefault();
 
-    const email = document.querySelector("#loginEmail").value;
+    const email = document.querySelector("#loginEmail").value.trim().toLowerCase();
     const senha = document.querySelector("#loginPassword").value;
 
     try {
-        const response = await fetch("/login", {
+        const response = await fetch("/auth/login", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -94,10 +94,10 @@ function login(navegarPara){
         } else {
             alert(data.message);
 
-            conta = new Conta(
-                data.usuario.id,
+            const conta = new Conta(
+                data.usuario.id_user,
                 data.usuario.username,
-                data.usuario.pontuacao
+                data.usuario.maximum_score
             );
 
             setConta(conta);
