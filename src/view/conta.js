@@ -1,11 +1,20 @@
-export function telaConta(navegarPara) {
+export function telaConta() {
     document.getElementById('app').innerHTML = `
-        <h1>Esse ver dados daconta</h1>
-        <button id="btn-voltar">Voltar</button>
-    `;
-    const btnVoltar = document.getElementById('btn-voltar');
     
-    btnVoltar.addEventListener('click', () => {
-        navegarPara('menu');
-    });
+        <div class="screen">
+
+            <div class="card">
+
+                <h1>Perfil</h1>
+
+                <p>ID: <span id="profileId"></span></p>
+                <p>Nome: <span id="profileName"></span></p>
+                <p>Maior Pontuação: <span id="profileScore"></span></p>
+
+                <button id="btn-voltar" type="click">Voltar</button>
+
+            </div>
+
+        </div>
+    `;
 }
