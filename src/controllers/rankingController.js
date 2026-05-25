@@ -8,7 +8,7 @@ export async function rankingController(navegarPara) {
     telaRanking();
     
     try {
-        const response = await fetch("/api/ranking");
+        const response = await fetch("/ranking/top10");
         const data = await response.json();
         
         if (!response.ok) {
