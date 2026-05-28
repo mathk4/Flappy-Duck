@@ -2,6 +2,12 @@
 
 // caso seja maior, consumir a api de atualizar a pontuação do usuario, atualizar a pontuação da classe Conta e mostrar na view a nova pontuação do jogador e a pontuação feita no jogo atual
 
+/*
+import { telaGameover } from "../view/gameover.js";
+
 export function gameoverController(navegarPara) {
     
+    telaGameover();
 }
+
+*/

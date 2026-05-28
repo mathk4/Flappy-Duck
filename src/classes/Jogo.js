@@ -1,14 +1,19 @@
-const tela =
-    document.getElementById(
-        "gameCanvas"
-    );
+import Pato from "./Pato.js";
+import Cano from "./Cano.js";
 
-const contexto =
-    tela.getContext("2d");
+export default class Jogo {
 
-class Jogo {
+    constructor(navegarPara) {
 
-    constructor(){
+        this.navegarPara = navegarPara;
+
+        const tela =
+            document.getElementById(
+                "gameCanvas"
+            );
+
+        const contexto =
+            tela.getContext("2d");
 
         // Canvas
         this.canvas = tela;
@@ -49,21 +54,21 @@ class Jogo {
         this.fundo = new Image();
 
         this.fundo.src =
-            "./img/fundo_if.png";
+            "./images/fundo.png";
 
         // Pato
         this.imagemPato =
             new Image();
 
         this.imagemPato.src =
-            "./img/pato.png";
+            "./images/pato.png";
 
         // Cano
         this.imagemCano =
             new Image();
 
         this.imagemCano.src =
-            "./img/cano.png";
+            "./images/cano.png";
     }
 
     configurarControles(){
@@ -87,6 +92,7 @@ class Jogo {
                         this.pato.pular();
                     }
 
+                    // n sei se deveria acontecer isso
                     // Reiniciar
                     else if(
                         this.estado ===
@@ -102,9 +108,9 @@ class Jogo {
         );
     }
 
-    iniciar(jogador){
+    iniciar(conta){
 
-        this.jogador = jogador;
+        this.jogador = conta;
 
         this.estado = "JOGANDO";
 
@@ -124,10 +130,11 @@ class Jogo {
             this.imagemPato
         );
 
-        // Mostrar tela do jogo
-        ScreenManager.show(
-            "gameScreen"
-        );
+        const mostratelajogo = document.getElementById('gameScreen');
+        mostratelajogo.style.display = 'flex';
+
+        const tirartelagameover = document.getElementById('gameOverScreen');
+        tirartelagameover.style.display = 'none';
 
         // Começar loop imediatamente
         this.loop();
@@ -396,7 +403,7 @@ class Jogo {
         );
     }
 
-    gameOver(){
+    async gameOver(){
 
         this.estado =
             "GAME_OVER";
@@ -404,41 +411,34 @@ class Jogo {
         // Atualizar recorde
         if(this.jogador){
 
-            let conta =
-                this.jogador.conta;
+            if(this.pontuacao > this.jogador.pontuacao){
 
-            if(
+                this.jogador.pontuacao = this.pontuacao;
 
-                this.pontuacao >
-                conta.pontuacao
+                try {
+                    const response = await fetch("/game/savescore", {
+                        method: "PATCH",
+                        headers: {
+                            "Content-Type": "application/json"
+                        },
+                        body: JSON.stringify({
+                            id_user: this.jogador.id,
+                            newScore: this.jogador.pontuacao
+                        })
+                    });
 
-            ){
+                    const data = await response.json();
 
-                conta.pontuacao =
-                    this.pontuacao;
-
-                let contas =
-                    Conta.carregar();
-
-                contas = contas.map(c => {
-
-                    if(
-                        c.id ===
-                        conta.id
-                    ){
-
-                        return conta;
+                    if(!response.ok){
+                        alert(data.message);
                     }
-
-                    return c;
-                });
-
-                Conta.salvar(contas);
+                } catch (error) {
+                    console.error(error);
+                }
             }
         }
 
-        // Atualizar ranking
-        Ranking.top10();
+        
 
         // Mostrar tela de game over
         document.getElementById(
@@ -447,10 +447,22 @@ class Jogo {
 
         document.getElementById(
             "bestScore"
-        ).innerText = this.jogador.conta.pontuacao;
+        ).innerText = this.jogador.pontuacao;
 
-        ScreenManager.show(
-            "gameOverScreen"
-        );
+        const tirartelajogo = document.getElementById('gameScreen');
+        tirartelajogo.style.display = 'none';
+
+        const mostrartelagameover = document.getElementById('gameOverScreen');
+        mostrartelagameover.style.display = 'flex';
+
+        document.getElementById(
+            "btn-restart"
+        ).onclick = 
+        () => this.iniciar(this.jogador);
+
+        document.getElementById(
+            "btn-menu"
+        ).onclick =
+        () => this.navegarPara("menu");
     }
-}
+} 
