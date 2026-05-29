@@ -4,7 +4,6 @@ import { fileURLToPath } from "url";
 
 import indexRoutes from "./src/routes/indexRoutes.js";
 import authRoutes from "./src/routes/apiAuthRoutes.js";
-//import rankingRoutes from "./src/routes/apiRankingRoutes.js";
 import scoreRoutes from "./src/routes/apiScoreRoutes.js";
 import rankingRoutes from './src/routes/apiRankingRoutes.js';
 const app = express();
@@ -22,7 +21,6 @@ app.use(express.static(path.join(__dirname, "src")));
 // rotas
 app.use("/", indexRoutes);
 app.use("/auth", authRoutes);
-//app.use("/ranking", rankingRoutes);
-app.use("/save", scoreRoutes);
-app.use('/api', rankingRoutes);
+app.use("/game", scoreRoutes);
+app.use('/ranking', rankingRoutes);
 export default app;

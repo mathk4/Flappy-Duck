@@ -1,4 +1,4 @@
-class Cano {
+export default class Cano {
 
     constructor(x, espaco, imagem, canvasHeight) {
 

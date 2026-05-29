@@ -4,6 +4,6 @@ import { getRanking } from "../controllers/apiRankingController.js";
 
 const router = express.Router();
 
-router.get("/ranking", getRanking);
+router.get("/top10", getRanking);
 
 export default router;

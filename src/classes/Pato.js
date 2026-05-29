@@ -1,4 +1,4 @@
-class Pato {
+export default class Pato {
 
     constructor(sprite) {
 

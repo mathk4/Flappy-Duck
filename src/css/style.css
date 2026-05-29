@@ -19,6 +19,20 @@ body{
     position:relative;
 }
 
+#gameCanvas{
+    border:4px solid black;
+    background:linear-gradient(#70c5ce,#fff);
+}
+
+#score{
+    position:absolute;
+    top:15px;
+    left:50%;
+    transform:translateX(-50%);
+    font-size:48px;
+    color:white;
+}
+
 .card{
     background:#2f9e44;
     padding:30px;

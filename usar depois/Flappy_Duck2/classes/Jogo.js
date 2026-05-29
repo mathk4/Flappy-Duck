@@ -49,21 +49,21 @@ class Jogo {
         this.fundo = new Image();
 
         this.fundo.src =
-            "./img/fundo_if.jpeg";
+            "./img/fundo_if.png";
 
         // Pato
         this.imagemPato =
             new Image();
 
         this.imagemPato.src =
-            "./img/pato.jpeg";
+            "./img/pato.png";
 
         // Cano
         this.imagemCano =
             new Image();
 
         this.imagemCano.src =
-            "./img/cano.jpeg";
+            "./img/cano.png";
     }
 
     configurarControles(){
