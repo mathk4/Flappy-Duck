@@ -19,6 +19,9 @@ export default class Jogo {
         this.canvas = tela;
         this.ctx = contexto;
 
+        // RAF id for canceling animation frames
+        this.rafId = null;
+
         // Pixel art
         this.ctx.imageSmoothingEnabled =
             false;
@@ -46,6 +49,19 @@ export default class Jogo {
 
         // Controles
         this.configurarControles();
+
+        // Garantir apenas uma instância ativa do jogo na página
+        if(typeof window !== 'undefined'){
+            if(window.__currentJogo && window.__currentJogo !== this){
+                try{
+                    window.__currentJogo.dispose();
+                }catch(e){
+                    console.warn('Erro ao descartar jogo anterior', e);
+                }
+            }
+
+            window.__currentJogo = this;
+        }
     }
 
     carregarImagens(){
@@ -160,7 +176,7 @@ export default class Jogo {
         this.desenhar();
 
         // Próximo frame
-        requestAnimationFrame(
+        this.rafId = requestAnimationFrame(
             () => this.loop()
         );
     }
@@ -230,18 +246,20 @@ export default class Jogo {
             ){
 
                 this.gameOver();
+
+                // Parar processamento deste frame para evitar
+                // que outros canos incrementem a pontuação
+                // ou continuem a atualização após o game over.
+                return;
             }
 
-            // Pontuação
+            // Pontuação (somente se ainda estiver jogando)
             if(
-
+                this.estado === "JOGANDO" &&
                 !cano.passou &&
-
                 cano.x + cano.largura <
                 this.pato.x
-
             ){
-
                 cano.passou = true;
 
                 this.pontuacao++;
@@ -279,6 +297,9 @@ export default class Jogo {
         ){
 
             this.gameOver();
+
+            // garantir que não continua atualizando neste frame
+            return;
         }
     }
 
@@ -342,11 +363,29 @@ export default class Jogo {
 
             ){
 
+                // Debug: log positions to help identificar falsos positivos
+                try{
+                    console.debug('VerificarColisao: colisao detectada', {
+                        pato: { x: pato.x, y: pato.y, largura: pato.largura, altura: pato.altura },
+                        cano: { x: cano.x, largura: cano.largura, alturaSuperior: cano.alturaSuperior, espaco: cano.espaco }
+                    });
+                }catch(e){}
+
                 return true;
             }
         }
 
         return false;
+    }
+
+    dispose(){
+        // Forçar parada do loop e marcar como game over
+        this.estado = "GAME_OVER";
+
+        if(this.rafId){
+            cancelAnimationFrame(this.rafId);
+            this.rafId = null;
+        }
     }
 
     desenharGameOver(){
@@ -407,6 +446,11 @@ export default class Jogo {
 
         this.estado =
             "GAME_OVER";
+
+        if(this.rafId){
+            cancelAnimationFrame(this.rafId);
+            this.rafId = null;
+        }
 
         // Atualizar recorde
         if(this.jogador){
