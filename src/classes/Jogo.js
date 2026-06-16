@@ -88,40 +88,19 @@ export default class Jogo {
     }
 
     configurarControles(){
+        this._keydownHandler = e => {
+            if (e.code === "Space") {
+                e.preventDefault();
 
-        document.addEventListener(
-            "keydown",
-            e => {
-
-                if(
-                    e.code === "Space"
-                ){
-
-                    e.preventDefault();
-
-                    // Pular
-                    if(
-                        this.estado ===
-                        "JOGANDO"
-                    ){
-
-                        this.pato.pular();
-                    }
-
-                    // n sei se deveria acontecer isso
-                    // Reiniciar
-                    else if(
-                        this.estado ===
-                        "GAME_OVER"
-                    ){
-
-                        this.iniciar(
-                            this.jogador
-                        );
-                    }
+                if (this.estado === "JOGANDO") {
+                    this.pato && this.pato.pular();
+                } else if (this.estado === "GAME_OVER") {
+                    this.iniciar(this.jogador);
                 }
             }
-        );
+        };
+
+        document.addEventListener("keydown", this._keydownHandler);
     }
 
     iniciar(conta){
@@ -386,6 +365,15 @@ export default class Jogo {
             cancelAnimationFrame(this.rafId);
             this.rafId = null;
         }
+
+        if (this._keydownHandler) {
+            document.removeEventListener("keydown", this._keydownHandler);
+            this._keydownHandler = null;
+        }
+
+        if (typeof window !== 'undefined' && window.__currentJogo === this) {
+            window.__currentJogo = null;
+        }
     }
 
     desenharGameOver(){
@@ -507,6 +495,8 @@ export default class Jogo {
         document.getElementById(
             "btn-menu"
         ).onclick =
-        () => this.navegarPara("menu");
+        () => {
+            this.navegarPara("menu");
+        }
     }
 } 

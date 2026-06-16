@@ -12,8 +12,17 @@ export function jogarController(navegarPara) {
     const gameover = document.getElementById('gameOverScreen');
     gameover.style.display = 'none';
 
-    const jogo = new Jogo(navegarPara);
+    // Se já existir um jogo em execução, descartar antes de criar outro.
+    if (typeof window !== 'undefined' && window.__currentJogo) {
+        try {
+            window.__currentJogo.dispose();
+            window.__currentJogo = null;
+        } catch (error) {
+            console.warn('Erro ao descartar jogo anterior', error);
+        }
+    }
 
+    const jogo = new Jogo(navegarPara);
     jogo.iniciar(getConta());
 
 }
