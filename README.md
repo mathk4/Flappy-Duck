@@ -23,7 +23,8 @@
 - HTML5 / CSS3 (Para estruturar e personalizar o front-end)
 - Node.js (Para fazer o back-end)
 - Banco de dados: PostgreSQL (Para armazenar os dados dos usuários)
-- Framework web: Iremos descobrir 👀
+- Supabase (Hospedagem do PostgreeSQL)
+- Git/Github (Versionamento e armazenamento do código)
 
 ---
 
@@ -39,36 +40,54 @@ cd projetos/Larissa-Matheus-Yuri
 # Instale as dependências (se houver)
 npm install
 
-# Execute
-npm start
 ```
 
----
+Antes de executar o projeto, é importante criar uma conta e um projeto no Supabase.
+Após criado o projeto, vá para "SQL Editor" no canto esquerdo do site do Supabase e rode o seguinte código:
 
+```sql
+-- TABELA DE USUÁRIOS
+CREATE TABLE users(
+	id_user INT GENERATED ALWAYS AS IDENTITY,
+	username VARCHAR(20) NOT NULL,
+	email VARCHAR(100) NOT NULL UNIQUE,
+	password VARCHAR(255) NOT NULL,
+	maximum_score INT DEFAULT 0,
+	PRIMARY KEY (id_user)
+);
+
+-- ÍNDICE PARA BUSCAS POR PONTUAÇÃO
+CREATE INDEX idx_score
+ON users(maximum_score DESC);
+
+```
+
+Além disso, copie o conteudo do arquivo [.env.exemple](./.env.example), crie um arquivo chamado ".env" e cole o conteudo colado.
+
+Ademais, no canto superior do Supabase, clique em "Connect" e depois em "ORM", vá até a parte de Configure ORM, copie o DATABASE_URL e cole para o .env, substituindo o [YOUR-PASSWORD] da url pela sua senha.
+
+Desta forma, volte ao terminal e execute o projeto
+```bash
+# Execute
+npm start
+
+```
+---
 ## Estrutura de pastas
 
 ```
-src/
-  ├── index.html        ← ponto de entrada
-  ├── css/
-  ├── js/
-  │   ├── model/          ← classes de domínio
-  │   ├── service/        ← regras de negócio
-  │   ├── controller/     ← controladores
-  │   └── repository/     ← acesso ao banco
-  └── db/               ← scripts SQL
+app.js             ← configuração do servidor Express
+server.js          ← ponto de entrada do backend
+src/               ← código frontend e recursos do jogo
+  ├── index.html     ← página principal do jogo
+  ├── classes/       ← classes do jogo
+  ├── controllers/   ← controladores de rota e lógica de views
+  ├── css/           ← estilos do front-end
+  ├── db/            ← configuração de conexão com banco de dados
+  ├── images/        ← imagens usadas no front-end
+  ├── models/        ← comunicação com o banco de dados
+  ├── routes/        ← definição de rotas da aplicação
+  ├── state/         ← gerenciamento de sessão e estado
+  └── view/          ← templates e renderização de páginas
 ```
-
 ---
-
-## Histórico de entregas
-
-| Entrega | Descrição | Data | Status |
-|---------|-----------|------|--------|
-| E1 | Definição do projeto | — | 🔄 |
-| E2 | Modelagem | — | ⏳ |
-| E3 | Backend + BD | — | ⏳ |
-| E4 | Interface integrada | — | ⏳ |
-| E5 | Projeto final | — | ⏳ |
-
-> ⏳ Pendente | ✅ Concluído | 🔄 Em andamento
