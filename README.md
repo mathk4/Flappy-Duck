@@ -62,7 +62,7 @@ ON users(maximum_score DESC);
 
 ```
 
-Além disso, copie o conteudo do arquivo [.env.exemple](./.env.example), crie um arquivo chamado ".env" e cole o conteudo colado.
+Além disso, copie o conteudo do arquivo [.env.example](./.env.example), crie um arquivo chamado ".env" e cole o conteudo colado.
 
 Ademais, no canto superior do Supabase, clique em "Connect" e depois em "ORM", vá até a parte de Configure ORM, copie o DATABASE_URL e cole para o .env, substituindo o [YOUR-PASSWORD] da url pela sua senha.
 
